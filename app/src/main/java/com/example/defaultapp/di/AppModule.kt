@@ -1,6 +1,8 @@
 package com.example.defaultapp.di
 
 import com.example.defaultapp.data.UsersApi
+import com.example.defaultapp.repository.UsersRepository
+import com.example.defaultapp.repository.UsersRepositoryImpl
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -14,6 +16,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Provides
+    @Singleton
+    fun provideUsersRepository(api: UsersApi): UsersRepository {
+        return UsersRepositoryImpl(api)
+    }
 
     @Provides
     @Singleton
