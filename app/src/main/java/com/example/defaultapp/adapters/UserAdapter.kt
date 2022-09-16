@@ -1,5 +1,6 @@
 package com.example.defaultapp.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.defaultapp.R
 import com.example.defaultapp.data.dto.UserItemDto
+import com.example.defaultapp.presentation.user_detail.UserDetailActivity
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
@@ -45,11 +47,9 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
         private fun onClick(userClicked: UserItemDto) {
 
-            Toast.makeText(
-                itemView.context,
-                "${userClicked.username} clicked!!! ",
-                Toast.LENGTH_SHORT
-            ).show()
+            val intent = Intent(itemView.context, UserDetailActivity::class.java)
+            intent.putExtra("User", userClicked.toUserItem())
+            itemView.context.startActivity(intent)
 
         }
 
