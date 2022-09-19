@@ -1,6 +1,9 @@
 package com.example.defaultapp.di
 
-import com.example.defaultapp.data.UsersApi
+import android.app.Application
+import androidx.room.Room
+import com.example.defaultapp.data.local.UsersDatabase
+import com.example.defaultapp.data.remote.UsersApi
 import com.example.defaultapp.repository.UsersRepository
 import com.example.defaultapp.repository.UsersRepositoryImpl
 import com.google.gson.Gson
@@ -19,8 +22,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideUsersRepository(api: UsersApi): UsersRepository {
-        return UsersRepositoryImpl(api)
+    fun provideUsersRepository(api: UsersApi, db: UsersDatabase): UsersRepository {
+        return UsersRepositoryImpl(api, db)
     }
 
     @Provides
@@ -36,5 +39,12 @@ object AppModule {
             .build()
             .create(UsersApi::class.java)
     }
+
+
+    @Provides
+    @Singleton
+    fun provideDatabase(app: Application): UsersDatabase =
+        Room.databaseBuilder(app, UsersDatabase::class.java, "users_database")
+            .build()
 
 }

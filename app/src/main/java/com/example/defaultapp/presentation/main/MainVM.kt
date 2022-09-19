@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.defaultapp.data.dto.UserItemDto
+import com.example.defaultapp.data.remote.dto.UserItemDto
+import com.example.defaultapp.models.UserItem
 import com.example.defaultapp.repository.UsersRepositoryImpl
 import com.example.defaultapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,9 +16,9 @@ import javax.inject.Inject
 class MainVM @Inject constructor(private val usersRepositoryImpl: UsersRepositoryImpl) :
     ViewModel() {
 
-    private val _response = MutableLiveData<Resource<List<UserItemDto>>>()
+    private val _response = MutableLiveData<Resource<List<UserItem>>>()
 
-    val response: LiveData<Resource<List<UserItemDto>>>
+    val response: LiveData<Resource<List<UserItem>>>
         get() = _response
 
     fun getUsers() {

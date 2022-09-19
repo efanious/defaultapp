@@ -2,9 +2,12 @@ package com.example.defaultapp.models
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "app_users")
 data class UserItem(
-    val id: Int?,
+    @PrimaryKey val id: Int?,
     val name: String?,
     val username: String?,
     val email: String?
