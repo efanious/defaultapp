@@ -5,15 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.defaultapp.R
-import com.example.defaultapp.data.dto.UserItemDto
+import com.example.defaultapp.models.UserItem
 import com.example.defaultapp.presentation.user_detail.UserDetailActivity
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
-    var data = listOf<UserItemDto>()
+    var data = listOf<UserItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -32,7 +31,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     class UserViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
-        private var user: UserItemDto? = null
+        private var user: UserItem? = null
 
         private val userNameText: TextView = itemView.findViewById(R.id.username_text)
         private val emailText: TextView = itemView.findViewById(R.id.email_text)
@@ -45,15 +44,15 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
             }
         }
 
-        private fun onClick(userClicked: UserItemDto) {
+        private fun onClick(userClicked: UserItem) {
 
             val intent = Intent(itemView.context, UserDetailActivity::class.java)
-            intent.putExtra("User", userClicked.toUserItem())
+            intent.putExtra("User", userClicked)
             itemView.context.startActivity(intent)
 
         }
 
-        fun bind(mUser: UserItemDto) {
+        fun bind(mUser: UserItem) {
             user = mUser
             userNameText.text = user!!.username
             emailText.text = user!!.email

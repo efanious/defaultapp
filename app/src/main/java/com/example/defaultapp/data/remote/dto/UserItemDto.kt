@@ -1,4 +1,4 @@
-package com.example.defaultapp.data.dto
+package com.example.defaultapp.data.remote.dto
 
 import com.example.defaultapp.models.UserItem
 

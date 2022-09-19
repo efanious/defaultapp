@@ -1,6 +1,6 @@
-package com.example.defaultapp.data
+package com.example.defaultapp.data.remote
 
-import com.example.defaultapp.data.dto.UserItemDto
+import com.example.defaultapp.data.remote.dto.UserItemDto
 import retrofit2.http.GET
 
 interface UsersApi {
